@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    tools:ignore="ExtraText">
+
+    <!-- Espaço para a foto do usuário -->
+    <ImageView
+        android:id="@+id/ivUserProfile"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/imagem" />
+        //android:src="
+        //@drawable/image"
+        //android:contentDescription="Foto do Usuário"
+
+    <!-- Nome completo do usuário -->
+    <TextView
+        android:id="@+id/tvFullName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome Completo do Usuário"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:textSize="18sp" />
+
+    <!-- Email do usuário -->
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="email@example.com"
+        android:layout_gravity="center_horizontal"
+        android:textSize="14sp" />
+
+    <!-- Linha de separação -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000"
+        android:layout_marginTop="16dp" />
+
+    <!-- Opções Clicáveis -->
+    <Button
+        android:id="@+id/btnOpcaoUsuarios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Usuários"
+        android:padding="16dp"
+        android:clickable="true"
+        android:textSize="18sp"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:layout_marginTop="8dp" />
+
+
+
+    <Button
+        android:id="@+id/btnOpcaoClientes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Clientes"
+        android:padding="16dp"
+        android:clickable="true"
+        android:textSize="18sp"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/btnOpcaoProdutos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Produtos"
+        android:padding="16dp"
+        android:clickable="true"
+        android:textSize="18sp"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/btnOpcaoSair"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sair"
+        android:padding="16dp"
+        android:clickable="true"
+        android:textSize="18sp"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>

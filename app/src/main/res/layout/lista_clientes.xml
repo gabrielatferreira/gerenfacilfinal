@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- RecyclerView para exibir a lista de usuários -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerUsuarios"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/fabAdicionar" />
+
+    <!-- Linha de separação entre os itens -->
+    <View
+        android:id="@+id/separador"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/fabAdicionar"
+        android:background="#000000" />
+
+
+    <!-- FloatingActionButton para adicionar usuário -->
+    <Button
+        android:id="@+id/fabAdicionar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+ Adicionar"
+        android:textSize="18sp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:textColor="@android:color/white" />
+
+    <!--Para ajustar o tamanho do texto e a posição central verticalmente,
+    você pode definir um estilo de texto personalizado no código Java
+     ao configurar o adaptador para o RecyclerView.
+     Isso permitirá que você controle o tamanho do texto e a formatação
+     dos itens da lista. Certifique-se de definir o estilo de texto para
+     o seu RecyclerView no código, ajustando o tamanho e o alinhamento vertical
+     de acordo com suas preferências. -->
+
+</RelativeLayout>
+
+
