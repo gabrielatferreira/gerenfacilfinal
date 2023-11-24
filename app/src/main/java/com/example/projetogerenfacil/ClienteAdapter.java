@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-import android.util.Log;
 
 public class ClienteAdapter extends RecyclerView.Adapter<ClienteAdapter.ClienteViewHolder> {
 
@@ -22,7 +21,7 @@ public class ClienteAdapter extends RecyclerView.Adapter<ClienteAdapter.ClienteV
     @NonNull
     @Override
     public ClienteViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.lista_clientes, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cliente, parent, false);
         return new ClienteViewHolder(itemView);
     }
 

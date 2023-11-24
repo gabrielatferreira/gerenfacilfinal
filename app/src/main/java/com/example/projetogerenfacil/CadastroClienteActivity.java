@@ -1,5 +1,8 @@
 package com.example.projetogerenfacil;
 
+import static com.example.projetogerenfacil.StorageUtils.getClientesFromStorage;
+import static com.example.projetogerenfacil.StorageUtils.getProdutosFromStorage;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +13,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.gson.Gson;
+
+import java.util.List;
 
 public class CadastroClienteActivity extends AppCompatActivity {
     private static final String TAG = "CadastroClienteActivity";
@@ -54,16 +61,17 @@ public class CadastroClienteActivity extends AppCompatActivity {
                     showToast("Complemento excede o limite de caracteres.");
                 } else {
                     // Se os dados forem validados, crie um arquivo com o cadastro do cliente
+                    List<Cliente> clientes = getClientesFromStorage(getApplicationContext());
+                    Cliente cliente = new Cliente(enteredName, enteredCPF_CNPJ, enteredEndereco, enteredComplemento);
+                    clientes.add(cliente);
 
-                    // Crie um arquivo utilizando o CPF/CNPJ como nome do arquivo
-                    SharedPreferences pref;
-                    pref = getSharedPreferences("cliente_" + enteredCPF_CNPJ, MODE_PRIVATE);
+                    SharedPreferences pref = getSharedPreferences("cliente_", MODE_PRIVATE);
                     SharedPreferences.Editor editor = pref.edit();
 
-                    editor.putString("nome", enteredName);
-                    editor.putString("cpf_cnpj", enteredCPF_CNPJ);
-                    editor.putString("endereco", enteredEndereco);
-                    editor.putString("complemento", enteredComplemento);
+                    Gson gson = new Gson();
+                    String jsonStringClientes = gson.toJson(clientes);
+
+                    editor.putString("lista_clientes", jsonStringClientes);
                     editor.apply();
 
                     Log.d(TAG, "Cliente cadastrado com sucesso: " + enteredName);

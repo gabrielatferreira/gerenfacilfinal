@@ -1,19 +1,17 @@
 package com.example.projetogerenfacil;
 
+import static com.example.projetogerenfacil.StorageUtils.*;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
-import android.content.Context;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListaProdutoActivity extends AppCompatActivity {
@@ -27,8 +25,7 @@ public class ListaProdutoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lista_produto);
 
-        listaDeProdutos = new ArrayList<>();
-        listaDeProdutos.addAll(getProdutosFromStorage());
+        listaDeProdutos = getProdutosFromStorage(getApplicationContext());
 
         recyclerView = findViewById(R.id.recyclerProdutos);
         produtoAdapter = new ProdutoAdapter(listaDeProdutos);
@@ -38,35 +35,11 @@ public class ListaProdutoActivity extends AppCompatActivity {
 
         btnAdicionarProduto = findViewById(R.id.fabAdicionarProduto);
 
-        btnAdicionarProduto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ListaProdutoActivity.this, CadastroProdutoActivity.class);
-                startActivityForResult(intent, 1);
-                Log.d("ListaProdutoActivity", "Botão de adicionar clicado");
-            }
+        btnAdicionarProduto.setOnClickListener(view -> {
+            Intent intent = new Intent(ListaProdutoActivity.this, CadastroProdutoActivity.class);
+            startActivityForResult(intent, 1);
+            Log.d("ListaProdutoActivity", "Botão de adicionar clicado");
         });
-    }
-
-    @NonNull
-    private List<Produto> getProdutosFromStorage() {
-        List<Produto> produtos = new ArrayList<>();
-        SharedPreferences preferences = getSharedPreferences("produto_", MODE_PRIVATE);
-
-        if (preferences.contains("nome")) {
-            String nome = preferences.getString("nome", "");
-            String categoria = preferences.getString("categoria", "");
-            double preco = Double.parseDouble(preferences.getString("preco", "0.0"));
-            int estoque = Integer.parseInt(preferences.getString("estoque", "0"));
-            String promocoes = preferences.getString("promocoes", "");
-            String descricao = preferences.getString("descricao", "");
-
-            Produto produto = new Produto(nome, categoria, preco, estoque, promocoes, descricao);
-            produtos.add(produto);
-            Log.d("ListaProdutoActivity", "Produto recuperado: " + nome);
-        }
-
-        return produtos;
     }
 
     @Override

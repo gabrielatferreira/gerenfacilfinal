@@ -4,15 +4,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListaClienteActivity extends AppCompatActivity {
@@ -26,8 +23,7 @@ public class ListaClienteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lista_clientes);
 
-        listaDeClientes = new ArrayList<>();
-        listaDeClientes = getClientesFromStorage();
+        listaDeClientes = StorageUtils.getClientesFromStorage(getApplicationContext());
 
         recyclerView = findViewById(R.id.recyclerUsuarios);
         clienteAdapter = new ClienteAdapter(listaDeClientes);
@@ -37,35 +33,11 @@ public class ListaClienteActivity extends AppCompatActivity {
 
         btnAdicionar = findViewById(R.id.fabAdicionar);
 
-        btnAdicionar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ListaClienteActivity.this, CadastroClienteActivity.class);
-                startActivityForResult(intent, 1);
-                Log.d("ListaClienteActivity", "Botão de adicionar clicado");
-            }
+        btnAdicionar.setOnClickListener(view -> {
+            Intent intent = new Intent(ListaClienteActivity.this, CadastroClienteActivity.class);
+            startActivityForResult(intent, 1);
+            Log.d("ListaClienteActivity", "Botão de adicionar clicado");
         });
-    }
-
-    @NonNull
-    private List<Cliente> getClientesFromStorage() {
-        List<Cliente> clientes = new ArrayList<>();
-        SharedPreferences preferences = getSharedPreferences("cliente_77788899900", MODE_PRIVATE);
-
-        // Verifique se o arquivo XML contém os dados do cliente
-        if (preferences.contains("nome")) {
-            String nome = preferences.getString("nome", "");
-            String cpf = preferences.getString("cpf_cnpj", "");
-            String endereco = preferences.getString("endereco", "");
-            String complemento = preferences.getString("complemento", "");
-
-            // Crie o cliente e adicione à lista
-            Cliente cliente = new Cliente(nome, cpf, endereco, complemento);
-            clientes.add(cliente);
-            Log.d("ListaClienteActivity", "Cliente recuperado: " + nome);
-        }
-
-        return clientes;
     }
 
 
